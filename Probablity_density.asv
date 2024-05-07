@@ -1,4 +1,4 @@
-function [J_up, J_down, t_vec] = Probablity_density(H, eps, y, T, time_steps)
+function J = Probablity_density(H, eps, y, T, time_steps)
     syms t x J_up_1(x) J_up_2(x) J_up_3(x) J_up_4(x) J_down_1(x) J_down_2(x) J_down_3(x) J_down_4(x)
     Psi = transpose([1 1 1 1 1 1 1 1]);
     Psi = Psi/norm(Psi);
@@ -68,4 +68,4 @@ function [J_up, J_down, t_vec] = Probablity_density(H, eps, y, T, time_steps)
     
     J_up = [vpa(J_up_1(t_vec))' vpa(J_up_2(t_vec))' vpa(J_up_3(t_vec))' vpa(J_up_4(t_vec))'];
     J_down = [vpa(J_down_1(t_vec))' vpa(J_down_2(t_vec))' vpa(J_down_3(t_vec))' vpa(J_down_4(t_vec))'];
-    
+    J = [J_up J_down];
