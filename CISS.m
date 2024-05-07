@@ -1,5 +1,5 @@
 %% Parameter values
-M = 2;               % Number of laps
+M = 10;               % Number of laps
 N = 4;                % Number of atoms/sites per lap
 a = 5*10^(-10);       % Radius of helix
 c = M*30*10^(-10);    % Length of helix
@@ -8,7 +8,7 @@ epsilon_0 = 3;        % 1st energy term
 gamma = 1;            % 2nd energy term
 lambda = 10^(-3);     % 3rd energy term
 
-Gamma = 0.9;         % Perturbation term
+Gamma_0 = 2;         % Perturbation term
 
 
 %% Construction of Hamiltonian
@@ -17,12 +17,12 @@ H_02 = Hamiltonian(N, M, a, c, epsilon_0, gamma, lambda, '-');
 
 
 %% Construction of perturbation
-fun = @(t) Gamma*cos(100*t);
-V = Perturbation("metal", fun, 2*N*M);
+fun = @(t) 1;
+V = Perturbation("Normal", Gamma_0, fun, 2*N*M);
 
 
 %% Create time vector
-t_0 = 0; T = 20; dt = 0.05;
+t_0 = 0; T = 10; dt = 0.1;
 t = t_0:dt:T;
 
 
@@ -32,8 +32,8 @@ start_guess = ones(2*N*M,1);
 
 
 %% Determine wavefunctions and relevant outputs
-wavefunctions1 = Wavefunction(0,t,H_01,V,start_guess);
-wavefunctions2 = Wavefunction(0,t,H_02,V,start_guess);
+wavefunctions1 = Wavefunction(30,t,H_01,V,start_guess);
+wavefunctions2 = Wavefunction(30,t,H_02,V,start_guess);
 [n1, m1] = Distributions(wavefunctions1, t);
 [n2, m2] = Distributions(wavefunctions2, t);
 
