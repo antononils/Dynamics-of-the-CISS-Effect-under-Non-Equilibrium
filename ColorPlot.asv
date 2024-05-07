@@ -1,4 +1,4 @@
-function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label, y_label, palette, axis_type) 
+function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label, y_label, palette) 
     % Determine limits
     min_value = double(min(min(CData1,[],'all'), min(CData2,[],'all')));
     max_value = double(max(max(CData1,[],'all'), max(CData2,[],'all')));
@@ -32,13 +32,12 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
 
     % Create xlabel
     xlabel(x_label, 'Interpreter', 'latex');
-    xscale(axis_type)
     
     % Create title
     if sub_title == "Spin"
-        title('Spin Up', 'FontSize', 18, 'FontWeight', 'normal', 'Interpreter', 'latex');
+        title('Spin Up', 'FontSize', 18, 'FontWeight', 'normal');
     elseif sub_title == "Helicity"
-        title('Positive Helicity', 'FontSize', 18, 'FontWeight', 'normal', 'Interpreter', 'latex');
+        title('Positive Helicity', 'FontSize', 18, 'FontWeight', 'normal');
     end
     
     box(axes1,'on');
@@ -59,18 +58,16 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
     set(s2,'edgecolor','none', 'AlignVertexCenters', 'on')
     
     % Create ylabel
-    ylabel(y_label, 'Interpreter', 'latex');
-    axes1.TickLabelInterpreter = 'latex';
+    ylabel(y_label);
     
     % Create xlabel
-    xlabel(x_label, 'Interpreter', 'latex');
-    xscale(axis_type)
+    xlabel(x_label);
     
     % Create title
     if sub_title == "Spin"
-        title('Spin Down', 'FontSize', 18, 'FontWeight', 'normal', 'Interpreter', 'latex');
+        title('Spin Down', 'FontSize', 18, 'FontWeight', 'normal');
     elseif sub_title == "Helicity"
-        title('Negative Helicity', 'FontSize', 18, 'FontWeight', 'normal', 'Interpreter', 'latex');
+        title('Negative Helicity', 'FontSize', 18, 'FontWeight', 'normal');
     end
     
     box(axes2, 'on');
@@ -82,9 +79,9 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
     ylim(axes2, [YData(1) YData(end)])
 
     % Create colorbar
-    colorbar(axes2, 'TickLabelInterpreter', 'latex');
+    colorbar(axes2);
     
     % Create sgtitle
-    sgtitle(figure1, main_title, 'FontSize', 22, 'interpreter', 'latex');
+    sgtitle(figure1, main_title, 'FontWeight', 'bold', 'FontSize', 22);
 end
 
