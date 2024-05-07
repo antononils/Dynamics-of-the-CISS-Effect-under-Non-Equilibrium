@@ -1,5 +1,5 @@
 %% Parameter values
-M = 10;               % Number of laps
+M = 1;               % Number of laps
 N = 4;                % Number of atoms/sites per lap
 a = 5*10^(-10);       % Radius of helix
 c = M*30*10^(-10);    % Length of helix
@@ -22,7 +22,7 @@ V = Perturbation("metal", fun, 2*N*M);
 
 
 %% Create time vector
-t_0 = 0; T = 90; dt = 0.1;
+t_0 = 0; T = 10; dt = 0.01;
 t = t_0:dt:T;
 
 
@@ -40,7 +40,7 @@ wavefunctions2 = Wavefunction(0,t,H_02,V,start_guess);
 
 %% Plot semi-3D colorplots
 ColorPlot(sites, t, n1{1}, n1{2}, 'Probability Density', 'Spin', 'Site Index', 'Time', 'Alternative')
-ColorPlot(sites,t,m1{3},m2{3},'Probability Density Difference', 'Helicity', 'Sites', 'Time', 'Polarized')
+ColorPlot(sites,t,m1{3},-m1{3},'Probability Density Difference', 'Helicity', 'Sites', 'Time', 'Polarized')
 
 
 %% Test for convergence

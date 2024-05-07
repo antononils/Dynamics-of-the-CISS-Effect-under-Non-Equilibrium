@@ -1,7 +1,7 @@
 function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label, y_label, palette) 
     % Determine limits
-    min_value = min(min(CData1,[],'all'), min(CData2,[],'all'));
-    max_value = max(max(CData1,[],'all'), max(CData2,[],'all'));
+    min_value = double(min(min(CData1,[],'all'), min(CData2,[],'all')));
+    max_value = double(max(max(CData1,[],'all'), max(CData2,[],'all')));
     
     % Color palette
     if palette == "Polarized"
