@@ -22,7 +22,7 @@ V = Perturbation("metal", fun, 2*N*M);
 
 
 %% Create time vector
-t_0 = 0; T = 40; dt = 0.1;
+t_0 = 0; T = 90; dt = 0.1;
 t = t_0:dt:T;
 
 
@@ -32,8 +32,8 @@ start_guess = ones(2*N*M,1);
 
 
 %% Determine wavefunctions and relevant outputs
-wavefunctions1 = Wavefunction(100,t,H_01,V,start_guess);
-wavefunctions2 = Wavefunction(100,t,H_02,V,start_guess);
+wavefunctions1 = Wavefunction(0,t,H_01,V,start_guess);
+wavefunctions2 = Wavefunction(0,t,H_02,V,start_guess);
 [n1, m1] = Distributions(wavefunctions1, t);
 [n2, m2] = Distributions(wavefunctions2, t);
 
@@ -109,7 +109,6 @@ ColorPlot(sites,t,m1{3},m2{3},'Probability Density Difference', 'Helicity', 'Sit
 %     normsOfErrors(i) = normsOfErrors(i)/length(t);
 % end
 % plot(time_steps,normsOfErrors)
-
 
 
 

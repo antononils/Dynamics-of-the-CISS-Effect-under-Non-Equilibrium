@@ -1,11 +1,11 @@
-min_value = 1;
-step = 1;
-max_value = 30;
+min_value = 0;
+step = 10^(-3);
+max_value = 10^(-1);
 
 values = min_value:step:max_value;
 
 % Create time vector
-t_0 = 0; T = 10000; dt = 200;
+t_0 = 0; T = 100; dt = 0.1;
 t = t_0:dt:T;
 
 spinUp = zeros(length(t),length(values));
@@ -19,13 +19,13 @@ for i = 1:length(values)
 
     % Parameter values
     M = 10;               % Number of laps
-    N = x;                % Number of atoms/sites per lap
+    N = 4;                % Number of atoms/sites per lap
     a = 10^(-9);          % Radius of helix
     c = M*5*10^(-9);      % Length of helix
     
     epsilon_0 = 3;        % 1st energy term
     gamma = 1;            % 2nd energy term
-    lambda = 10^(-3);     % 3rd energy term
+    lambda = x;           % 3rd energy term
     
     Gamma = 30*10^(-2);   % Perturbation term
 
@@ -54,7 +54,7 @@ spinUp = spinUp./max(abs(spinUp),[],'all');
 spinDown = spinDown./max(abs(spinDown),[],'all');
 
 % Plot semi-3D colorplots
-ColorPlot(values,t,spinUp,spinDown,'Polarized Probability Density', 'Spin', 'Sites per Lap', 'Time', 'Polarized')
+ColorPlot(values,t,spinUp,spinDown,'Polarized Probability Density', 'Spin', '\lambda', 'Time', 'Polarized')
 
 
 
