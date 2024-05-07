@@ -20,7 +20,7 @@ function H = Perturbation_analytic(Helicity, radius, length, lambda, Gamma, chir
         h_42 = g*[-1i*b -d;
             d  1i*b];
             
-        H = [zeros(2,2) zeros(2,2) h_13 zeros(2,2);
+        H = lambda*[zeros(2,2) zeros(2,2) h_13 zeros(2,2);
             zeros(2,2) zeros(2,2) zeros(2,2) h_24;
             h_31 zeros(2,2) zeros(2,2) zeros(2,2);
             zeros(2,2) h_42 zeros(2,2) zeros(2,2)];
@@ -62,6 +62,5 @@ function H = Perturbation_analytic(Helicity, radius, length, lambda, Gamma, chir
                 zeros(2,2) zeros(2,2) zeros(2,2) zeros(2,2)];
         end
     end
-
     H = H + func*V;
 end
