@@ -63,7 +63,7 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
     
     % Create ylabel
     ylabel(y_label, 'Interpreter', 'latex');
-    axes1.TickLabelInterpreter = 'latex';
+    axes2.TickLabelInterpreter = 'latex';
     
     % Create xlabel
     xlabel(x_label, 'Interpreter', 'latex');
