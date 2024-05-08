@@ -1,5 +1,5 @@
 %% Parameter values
-M = 1;               % Number of laps
+M = 5;               % Number of laps
 N = 4;                % Number of atoms/sites per lap
 a = 5*10^(-10);       % Radius of helix
 c = M*30*10^(-10);    % Length of helix
@@ -17,11 +17,11 @@ H_02 = Hamiltonian(N, M, a, c, epsilon_0, gamma, lambda, '-');
 
 
 %% Construction of perturbation
-fun1 = @(t) -1;
+fun1 = @(t) 1;
 fun2 = @(t) cos(10*t);
-fun3 = @(t) -2*(heaviside(t-5)-0.5);
+fun3 = @(t) piecewise;
 
-perturbations = {{'E-field', 0.2*Gamma_0, fun3}};
+perturbations = {{'E-field', Gamma_0, fun1}};
 V = Perturbation(perturbations, 2*N*M);
 
 

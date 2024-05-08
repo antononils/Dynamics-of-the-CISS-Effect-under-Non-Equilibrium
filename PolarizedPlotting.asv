@@ -3,7 +3,7 @@ step = 1;
 max_value = 10;
 
 %values = min_value:step:max_value;
-values = logspace(-1,4,5);
+values = logspace(-1,4);
 
 % Create time vector
 t_0 = 0; T = 20; dt = 0.2;
@@ -43,7 +43,7 @@ for i = 1:length(values)
     start_guess = ones(2*N*M,1);
     
     % Determine wavefunctions and relevant outputs
-    wavefunctions = Wavefunction(100,t,H_0,V,start_guess);
+    wavefunctions = Wavefunction(0,t,H_0,V,start_guess);
     [n, m] = Distributions(wavefunctions, t);
 
     % Polarize the data
