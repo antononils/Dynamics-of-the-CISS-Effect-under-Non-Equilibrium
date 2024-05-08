@@ -10,14 +10,14 @@ Gamma = 50e-3;
 p = [0 0 0];
 chrility = true;
 perturbation = "metal_l";
-func = 1-exp(-t^2/10);
+func = 1-ex;
 
 
 H_pos = Perturbation_analytic("pos",a,c,lambda, Gamma, chrility, perturbation,p,func);
 H_neg = Perturbation_analytic("neg", a, c, lambda, Gamma, chrility, perturbation, p, func);
 
-T = 30;
-time_step = 300;
+T = 10;
+time_step = 100;
 [J_pos_up, J_pos_down, t_vec] = Probablity_density(H_pos, eps, y, T, time_step);
 [J_neg_up, J_neg_down, t_vec]= Probablity_density(H_neg, eps, y, T, time_step);
 
