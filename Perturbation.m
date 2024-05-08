@@ -1,22 +1,53 @@
-function V = Perturbation(type, left, pL, right, pR, Gamma_0, fun, size)
-    if type == "metal"
-        GammaL = -1i*Gamma_0/2*(eye(2,2)+[pL(3) pL(1)-1i*pL(2); pL(1)+1i*pL(2) -pL(3)]);
-        GammaR = -1i*Gamma_0/2*(eye(2,2)+[pR(3) pR(1)-1i*pR(2); pR(1)+1i*pR(2) -pR(3)]);
-        F = zeros(size); 
-        if left
-            F(1,1) = GammaL(1,1); F(1,2) = GammaL(1,2); F(2,1) = GammaL(2,1); F(2,2) = GammaL(2,2);
+function V = Perturbation(perturbations, size)
+    % Input: Perturbations specified as {{type, Gamma_0, fun, site, p},...}
+
+    % Initialize a final matrix (the sum of all perturbations)
+    V = @(t) zeros(size);
+
+    % Loop through all perturbations given
+    for i = 1:length(perturbations)
+        % Get the general information about this perturbation
+        type = perturbations{i}{1};
+        Gamma_0 = perturbations{i}{2};
+        fun = perturbations{i}{3};
+
+        % Initialize a matrix for this specific perturbation
+        F_i = zeros(size);
+        
+        % Check which type of perturbation we're dealing with
+        if type == "Metal"
+            % If metal, find the affected site and p
+            site = perturbations{i}{4};
+            p = perturbations{i}{5};
+
+            % Define Gamma as a 2x2 matrix for the specified p
+            Gamma = -1i*Gamma_0/2*(eye(2,2)+[p(3) p(1)-1i*p(2); p(1)+1i*p(2) -p(3)]);
+            
+            % Find the corresponding matrix position for the site
+            matrix_pos = 2*site-1;
+            
+            % Add elements of Gamma to the matrix
+            F_i(matrix_pos, matrix_pos) = Gamma(1, 1); 
+            F_i(matrix_pos, matrix_pos+1) = Gamma(1, 2); 
+            F_i(matrix_pos+1, matrix_pos) = Gamma(2, 1); 
+            F_i(matrix_pos+1, matrix_pos+1) = Gamma(2, 2);
+
+        elseif type == "E-field"
+            % Loop through the molecule and add values on diagonal
+            for j = 1:size/2
+                % Find the corresponding matrix position for the site
+                matrix_pos = 2*j-1;
+
+                % Add elements to the matrix
+                F_i(matrix_pos, matrix_pos) =  matrix_pos-1;
+                F_i(matrix_pos+1, matrix_pos+1) = matrix_pos-1;
+            end
+
+            % Set highest value to one, and scale with Gamma_0
+            F_i = Gamma_0*(F_i./max(F_i, [], 'all'));
         end
-        if right
-            F(end-1,end-1) = GammaR(1,1); F(end-1,end) = GammaR(1,2); F(end,end-1) = GammaR(2,1); F(end,end) = GammaR(2,2);
-        end
-    elseif type == "E-field"
-        F = eye(2*M*N);
-        for j = 1:M*N
-            i = 2*j-1;
-            F(i,i) = i-1;
-            F(i+1,i+1) = i-1;
-        end
-        F = F./max(F,[],'all');
+        
+        % Add the perturbation matrix to the total matrix
+        V = @(t) V(t) + F_i*fun(t);
     end
-    V = @(t) F*fun(t);
 end

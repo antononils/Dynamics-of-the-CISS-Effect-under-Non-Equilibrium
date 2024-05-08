@@ -17,8 +17,8 @@ H_02 = Hamiltonian(N, M, a, c, epsilon_0, gamma, lambda, '-');
 
 
 %% Construction of perturbation
-% fun = @(t) 1;
-% V = Perturbation(true,"1",true,'2', Gamma_0, fun, 2*N*M);
+fun = @(t) 1;
+V = Perturbation(true,"1",true,'2', Gamma_0, fun, 2*N*M);
 V = @(t) Gamma_0*cos(t)*F;
 
 
