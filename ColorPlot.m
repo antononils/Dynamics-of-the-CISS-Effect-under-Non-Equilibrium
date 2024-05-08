@@ -31,6 +31,7 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
     
     % Create ylabel
     ylabel(y_label, 'Interpreter', 'latex');
+    axes1.XTick = unique(round(axes1.XTick));
     axes1.TickLabelInterpreter = 'latex';
 
     % Create xlabel
@@ -63,9 +64,10 @@ function ColorPlot(XData, YData, CData1, CData2, main_title, sub_title, x_label,
     
     % Create ylabel
     ylabel(y_label, 'Interpreter', 'latex');
-    axes2.TickLabelInterpreter = 'latex';
     
     % Create xlabel
+    axes2.XTick = unique(round(axes2.XTick));
+    axes2.TickLabelInterpreter = 'latex';
     xlabel(x_label, 'Interpreter', 'latex');
     xscale(axis_type)
     

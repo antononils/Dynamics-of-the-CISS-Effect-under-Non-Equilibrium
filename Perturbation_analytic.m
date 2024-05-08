@@ -45,7 +45,7 @@ function H = Perturbation_analytic(Helicity, radius, length, lambda, Gamma, chir
      
     else
         if  ismember("metal_r", perturbation)
-            v = Gamma*(eye(2,2)+[p(3) p(1)-1i*p(2);
+            v = -1i*Gamma*(eye(2,2)+[p(3) p(1)-1i*p(2);
                 p(1)+1i*p(2) -p(3)]);
             V = V + [zeros(2,2) zeros(2,2) zeros(2,2) zeros(2,2);
                 zeros(2,2) zeros(2,2) zeros(2,2) zeros(2,2);
@@ -54,7 +54,7 @@ function H = Perturbation_analytic(Helicity, radius, length, lambda, Gamma, chir
         end
 
         if  ismember("metal_l", perturbation)
-            v = Gamma*(eye(2,2)+[p(3) p(1)-1i*p(2);
+            v = -1i*Gamma*(eye(2,2)+[p(3) p(1)-1i*p(2);
                 p(1)+1i*p(2) -p(3)]);
             V = V + [v zeros(2,2) zeros(2,2) zeros(2,2);
                 zeros(2,2) zeros(2,2) zeros(2,2) zeros(2,2);
