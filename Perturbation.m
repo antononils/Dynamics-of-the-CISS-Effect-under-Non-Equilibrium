@@ -1,20 +1,22 @@
-function V = Perturbation(type, Gamma_0, fun, size)
-    if type == "1"
-        p = [0 0 1];
-    elseif type == "2"
-        p = [0 0 -1];
-    elseif type == "3"
-        p = [0 1 0];
-    elseif type == "4"
-        p = [0 -1 0];
-    elseif type == "5"
-        p = [1 0 0];
-    elseif type == "6"
-        p = [-1 0 0];
-    elseif type == "Normal"
-        p = [0 0 0];
+function V = Perturbation(type, left, pL, right, pR, Gamma_0, fun, size)
+    if type == "metal"
+        GammaL = -1i*Gamma_0/2*(eye(2,2)+[pL(3) pL(1)-1i*pL(2); pL(1)+1i*pL(2) -pL(3)]);
+        GammaR = -1i*Gamma_0/2*(eye(2,2)+[pR(3) pR(1)-1i*pR(2); pR(1)+1i*pR(2) -pR(3)]);
+        F = zeros(size); 
+        if left
+            F(1,1) = GammaL(1,1); F(1,2) = GammaL(1,2); F(2,1) = GammaL(2,1); F(2,2) = GammaL(2,2);
+        end
+        if right
+            F(end-1,end-1) = GammaR(1,1); F(end-1,end) = GammaR(1,2); F(end,end-1) = GammaR(2,1); F(end,end) = GammaR(2,2);
+        end
+    elseif type == "E-field"
+        F = eye(2*M*N);
+        for j = 1:M*N
+            i = 2*j-1;
+            F(i,i) = i-1;
+            F(i+1,i+1) = i-1;
+        end
+        F = F./max(F,[],'all');
     end
-    Gamma = -1i*Gamma_0/2*(eye(2,2)+[p(3) p(1)-1i*p(2); p(1)+1i*p(2) -p(3)]);
-    F = zeros(size); F(1,1) = Gamma(1,1); F(1,2) = Gamma(1,2); F(2,1) = Gamma(2,1); F(2,2) = Gamma(2,2);
     V = @(t) F*fun(t);
 end

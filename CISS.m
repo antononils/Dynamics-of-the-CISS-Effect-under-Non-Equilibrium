@@ -1,14 +1,14 @@
 %% Parameter values
-M = 10;               % Number of laps
+M = 5;               % Number of laps
 N = 4;                % Number of atoms/sites per lap
 a = 5*10^(-10);       % Radius of helix
 c = M*30*10^(-10);    % Length of helix
 
 epsilon_0 = 3;        % 1st energy term
 gamma = 1;            % 2nd energy term
-lambda = 10^(-3);     % 3rd energy term
+lambda = 10^(-2);     % 3rd energy term
 
-Gamma_0 = 2;         % Perturbation term
+Gamma_0 = 1.8;        % Perturbation term
 
 
 %% Construction of Hamiltonian
@@ -17,12 +17,13 @@ H_02 = Hamiltonian(N, M, a, c, epsilon_0, gamma, lambda, '-');
 
 
 %% Construction of perturbation
-fun = @(t) 1;
-V = Perturbation("Normal", Gamma_0, fun, 2*N*M);
+% fun = @(t) 1;
+% V = Perturbation(true,"1",true,'2', Gamma_0, fun, 2*N*M);
+V = @(t) Gamma_0*cos(t)*F;
 
 
 %% Create time vector
-t_0 = 0; T = 10; dt = 0.1;
+t_0 = 0; T = 20; dt = 0.4;
 t = t_0:dt:T;
 
 
@@ -32,16 +33,15 @@ start_guess = ones(2*N*M,1);
 
 
 %% Determine wavefunctions and relevant outputs
-wavefunctions1 = Wavefunction(30,t,H_01,V,start_guess);
-wavefunctions2 = Wavefunction(30,t,H_02,V,start_guess);
+wavefunctions1 = Wavefunction(100,t,H_01,V,start_guess);
+wavefunctions2 = Wavefunction(100,t,H_02,V,start_guess);
 [n1, m1] = Distributions(wavefunctions1, t);
 [n2, m2] = Distributions(wavefunctions2, t);
 
 
 %% Plot semi-3D colorplots
-ColorPlot(sites, t, n1{1}, n1{2}, '\textbf{Probability Density}', 'Spin', 'Site Index', 'Time', 'Alternative', 'linear')
+%ColorPlot(sites, t, n1{1}, n1{2}, '\textbf{Probability Density}', 'Spin', 'Site Index', 'Time', 'Alternative', 'linear')
 ColorPlot(sites, t, m1{3}, m2{3}, '\textbf{Spin Polarization}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
-box off;
 
 
 %% Test for convergence
