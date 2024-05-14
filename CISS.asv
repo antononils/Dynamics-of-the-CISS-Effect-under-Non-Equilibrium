@@ -8,7 +8,7 @@ epsilon_0 = 3;        % 1st energy term
 gamma = 1;            % 2nd energy term
 lambda = 10^(-3);     % 3rd energy term
 
-Gamma_01 = 1.8;        % Perturbation term
+Gamma_01 = 1.6;        % Perturbation term
 Gamma_02 = 0.03;        % Perturbation term
 
 
@@ -24,15 +24,9 @@ fun3 = @(t) sin(2*pi/20*t);
 fun4 = @(t) -exp(-0.5*t);
 fun5 = @(t) -2*(heaviside(t-10)-0.5);
 
-perturbations1 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]}};
-V1 = Perturbation(perturbations1, 2*N*M);
-
-perturbations2 = {{'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V2 = Perturbation(perturbations2, 2*N*M);
-
-perturbations3 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]},...
+perturbations = {{'Metal', Gamma_01, fun2, 20, [0 0 0]},...
                  {'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V3 = Perturbation(perturbations3, 2*N*M);
+V = Perturbation(perturbations, 2*N*M);
 
 
 %% Create time vector
@@ -46,23 +40,18 @@ start_guess = ones(2*N*M,1);
 
 
 %% Determine wavefunctions and relevant outputs
-wavefunctions1 = Wavefunction(50,t,H_01,V1,start_guess);
-wavefunctions2 = Wavefunction(50,t,H_02,V1,start_guess);
+wavefunctions1 = Wavefunction(50,t,H_01,V,start_guess);
+wavefunctions2 = Wavefunction(50,t,H_02,V,start_guess);
 [n1, m1] = Distributions(wavefunctions1, t);
 [n2, m2] = Distributions(wavefunctions2, t);
 
-wavefunctions3 = Wavefunction(50,t,H_01,V2,start_guess);
-wavefunctions4 = Wavefunction(50,t,H_02,V2,start_guess);
+wavefunctions3 = Wavefunction(50,t,H_01,V,start_guess);
+wavefunctions4 = Wavefunction(50,t,H_02,V,start_guess);
 [n3, m3] = Distributions(wavefunctions3, t);
 [n4, m4] = Distributions(wavefunctions4, t);
 
-wavefunctions5 = Wavefunction(50,t,H_01,V3,start_guess);
-wavefunctions6 = Wavefunction(50,t,H_02,V3,start_guess);
-[n5, m5] = Distributions(wavefunctions5, t);
-[n6, m6] = Distributions(wavefunctions6, t);
-
-ColorPlot(sites, t, m1{3}+m3{3}, m2{3}+m4{3}, '\textbf{Spin Polarization (Superposition)}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
-ColorPlot(sites, t, m5{3}, m6{3}, '\textbf{Spin Polarization}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
+ColorPlot(sites, t, m1{3}+m3{3}, m2{3}+m4{3}, '\textbf{Spin Polarization}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
+ColorPlot(sites, t, m1{3}, m2{3}, '\textbf{Spin Polarization}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
 
 
 
