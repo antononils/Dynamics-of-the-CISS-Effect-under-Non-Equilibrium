@@ -15,7 +15,6 @@ spinDown = zeros(length(t),length(values));
 
 length(values)
 for i = 1:length(values)
-    i
     x = values(i);
 
     % Parameter values
