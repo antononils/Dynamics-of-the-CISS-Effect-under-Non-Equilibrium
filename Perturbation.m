@@ -3,7 +3,6 @@ function V = Perturbation(perturbations, size)
 
     % Initialize a final matrix (the sum of all perturbations)
     V = @(t) zeros(size);
-
     % Loop through all perturbations given
     for i = 1:length(perturbations)
         % Get the general information about this perturbation
@@ -39,12 +38,18 @@ function V = Perturbation(perturbations, size)
                 matrix_pos = 2*j-1;
 
                 % Add elements to the matrix
-                F_i(matrix_pos, matrix_pos) =  matrix_pos-1;
-                F_i(matrix_pos+1, matrix_pos+1) = matrix_pos-1;
-            end
+                F_i(matrix_pos, matrix_pos) =  (j-1)/(size/2-1);
+                F_i(matrix_pos+1, matrix_pos+1) = (j-1)/(size/2-1);
 
-            % Set highest value to one, and scale with Gamma_0
-            F_i = Gamma_0*(F_i./max(F_i, [], 'all'));
+                if matrix_pos < size-1
+                    F_i(matrix_pos+2, matrix_pos) = 1/6;
+                    F_i(matrix_pos+3, matrix_pos+1) = 1/6;
+                    F_i(matrix_pos, matrix_pos+2) = -1/6;
+                    F_i(matrix_pos+1,matrix_pos+3) = -1/6;
+                end
+            end
+            % Scale with Gamma_0
+            F_i = Gamma_0*F_i;
         end
         
         % Add the perturbation matrix to the total matrix
