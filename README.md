@@ -31,3 +31,7 @@ This folder contains the code used for plotting the results:
   * [ColorPlot](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/ColorPlot.m)
   * [PolarizedPlotting](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/PolarizedPlotting.m)
 
+
+
+## Authors 
+This project was done by Anton O'Nils, Christoffer Damsgaard Falck, Gustav Teglund, and Hannes Tjulin.
