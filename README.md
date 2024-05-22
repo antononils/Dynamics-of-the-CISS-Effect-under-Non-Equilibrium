@@ -2,6 +2,7 @@
 
 ## Analytical Approximation
   * CISS_analytical
+    
   * Perturbation_analytic
   * Probability_density
 
@@ -13,8 +14,6 @@
   * Perturbation
   * Wavefunction
   * WavefunctionWithErrors
-
-
 
 ## Plotting 
   * ColorPlot
