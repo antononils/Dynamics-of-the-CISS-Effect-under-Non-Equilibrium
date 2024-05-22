@@ -1,8 +1,18 @@
 # Dynamics of the CISS Effect under Non Equilibrium
 
-## Numerical Solution
+## Analytical Approximation
+  * File 1
+  * File 2
+  * ...
 
-## Analytical Solution
+## Numerical Approximation
+  * File 1
+  * File 2
+  * ...
+
 
 
 ## Plotting 
+  * File 1
+  * File 2
+  * ...
