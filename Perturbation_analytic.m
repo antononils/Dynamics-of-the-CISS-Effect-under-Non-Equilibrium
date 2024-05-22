@@ -6,6 +6,7 @@ function H = Perturbation_analytic(Helicity, radius, length, lambda, Gamma, chir
     d= 2*a*c*(1/3);
     b = 2*a^2;
     
+    
     %% Specify if the chirility should be included or not 
     if chirility == false
         g = 0;

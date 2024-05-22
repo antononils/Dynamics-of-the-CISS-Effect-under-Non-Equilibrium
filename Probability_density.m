@@ -7,6 +7,7 @@ function [J_up, J_down, t_vec] = Probability_density(H, eps, y, T, time_steps)
 
     t_vec = linspace(0,T,time_steps);
     
+    
     %% Solving for A eigenvaluse and eigenvectors
     A = [0 y 0 0;
         y 0 y 0;
