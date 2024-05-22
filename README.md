@@ -1,14 +1,17 @@
 # Dynamics of the CISS Effect under Non Equilibrium
 
 ## Analytical Approximation
-  * File 1
-  * File 2
-  * ...
+  * CISS_analytical.m
+  * Perturbation_analytic.m
+  * Probability_density.m
 
 ## Numerical Approximation
-  * File 1
-  * File 2
-  * ...
+  * CISS.m
+  * ConvergenceTest.m
+  * Distrubutions.m
+  * Hamiltonian.m
+  * Perturbation.m
+  * 
 
 
 
