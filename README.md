@@ -1,21 +1,22 @@
-# Dynamics of the CISS Effect under Non Equilibrium
+# Dynamics of the CISS Effect under Non-Equilibrium
 
 ## Analytical Approximation
-  * CISS_analytical.m
-  * Perturbation_analytic.m
-  * Probability_density.m
+  * CISS_analytical
+  * Perturbation_analytic
+  * Probability_density
 
 ## Numerical Approximation
-  * CISS.m
-  * ConvergenceTest.m
-  * Distrubutions.m
-  * Hamiltonian.m
-  * Perturbation.m
-  * 
+  * CISS
+  * ConvergenceTest
+  * Distrubutions
+  * Hamiltonian
+  * Perturbation
+  * Wavefunction
+  * WavefunctionWithErrors
 
 
 
 ## Plotting 
-  * File 1
-  * File 2
-  * ...
+  * ColorPlot
+  * PolarizedPlotting
+
