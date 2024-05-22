@@ -46,7 +46,7 @@ This folder contains the code used for plotting the results:
   * [ColorPlot](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/ColorPlot.m)
     
     _This file contains the code that creates the color plots for the probability densities and the spin polarization._
-  * [PolarizedPlotting](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/PolarizedPlotting.m
+  * [PolarizedPlotting](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/PolarizedPlotting.m)
   
     _This file contains the code that creates the color plots for the polarized probability density._
 
