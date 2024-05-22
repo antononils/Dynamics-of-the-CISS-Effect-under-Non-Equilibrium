@@ -8,7 +8,7 @@ Selectivity Effect under Non-Equilibrium".
 This folder contains the code used for the analytical approximation:
   * [CISS_analytical](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Analytical%20Approximation/CISS_analytical.m)
   * [Perturbation_analytic](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Analytical%20Approximation/Perturbation_analytic.m)
-  * [Probability_density]([url](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Analytical%20Approximation/Probability_density.m))
+  * [Probability_density](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Analytical%20Approximation/Probability_density.m)
 
 ## Numerical Approximation
 This folder contains the code used for the numerical approximation:
