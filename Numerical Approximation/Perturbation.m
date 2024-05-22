@@ -38,11 +38,11 @@ function V = Perturbation(perturbations, size)
                 % Find the corresponding matrix position for the site
                 matrix_pos = 2*j-1;
 
-                % Add elements to the main diagonal
+                % Add diagonal elements to the matrix
                 F_i(matrix_pos, matrix_pos) =  (j-1)/(size/2-1);
                 F_i(matrix_pos+1, matrix_pos+1) = (j-1)/(size/2-1);
                 
-                % Add elements to the sub diagonals
+                % Add off-diagonal elements to the matrix
                 if matrix_pos < size-1
                     F_i(matrix_pos+2, matrix_pos) = 1/6;
                     F_i(matrix_pos+3, matrix_pos+1) = 1/6;

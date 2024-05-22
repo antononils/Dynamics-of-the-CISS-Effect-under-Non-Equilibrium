@@ -80,6 +80,7 @@ function [wavefunction_approximation, total_errors] = WavefunctionWithErrors(n, 
     %% Depending on the order n, return an approximation of a wavevector for each time
     % Loop through values of n and determine the wavefunction vector and errors
     for i = 1:n
+        disp(i)
         % Determine integrand vectors (for wavefunction and error)
         [integrandVector,errorVector] = integrand(i);
 

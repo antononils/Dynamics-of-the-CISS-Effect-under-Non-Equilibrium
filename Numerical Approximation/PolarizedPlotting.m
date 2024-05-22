@@ -1,7 +1,7 @@
+% Create a vector of the parameter to test CISS for
 min_value = 0;
-step = 0.05;
-max_value = 0.41;
-
+step = 10^(-3);
+max_value = 10^(-1);
 values = min_value:step:max_value;
 %values = logspace(-1,4,5);
 
@@ -9,11 +9,11 @@ values = min_value:step:max_value;
 t_0 = 0; T = 30; dt = 0.3;
 t = t_0:dt:T;
 
+% Create two vectors; one for spin up and one for spin down
 spinUp = zeros(length(t),length(values));
 spinDown = zeros(length(t),length(values));
 
-
-length(values)
+% Loop through the parameter values
 for i = 1:length(values)
     x = values(i);
 
@@ -58,7 +58,7 @@ spinDown = spinDown./max(abs(spinDown),[],'all');
 ColorPlot(values,t,spinUp,spinDown,'Polarized Probability Density', 'Spin', '\Gamma_0', 'Time', 'Polarized', 'log')
 
 
-
+% Function that polarizes 3d data to 2d
 function vector = Matrix2Vector(matrix)
     weights = linspace(-length(matrix(1,:)),length(matrix(1,:)),length(matrix(1,:)));
     vector = zeros(length(matrix(:,1)),1);

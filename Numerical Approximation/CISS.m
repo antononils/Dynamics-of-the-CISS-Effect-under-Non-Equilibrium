@@ -24,16 +24,17 @@ fun3 = @(t) sin(2*pi/20*t);
 fun4 = @(t) -exp(-0.5*t);
 fun5 = @(t) -2*(heaviside(t-10)-0.5);
 
-perturbations1 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]}};
-V1 = Perturbation(perturbations1, 2*N*M);
+% perturbations1 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]}};
+% V1 = Perturbation(perturbations1, 2*N*M);
+% 
+% perturbations2 = {{'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
+% V2 = Perturbation(perturbations2, 2*N*M);
+% 
+% perturbations3 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]},...
+%                  {'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
+% V3 = Perturbation(perturbations3, 2*N*M);
 
-perturbations2 = {{'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V2 = Perturbation(perturbations2, 2*N*M);
-
-perturbations3 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]},...
-                 {'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V3 = Perturbation(perturbations3, 2*N*M);
-
+Perturbation({{'E-field', 1, fun1}}, 2*N*M)
 
 %% Create time vector
 t_0 = 0; T = 20; dt = 0.2;
