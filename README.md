@@ -20,25 +20,34 @@ This folder contains the code used for the analytical approximation:
 ## Numerical Approximation
 This folder contains the code used for the numerical approximation:
   * [CISS](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/CISS.m)
+    
     _This file contains the code that runs the numerical simulation of the CISS effect._
   * [ConvergenceTest](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/ConvergenceTest.m)
+    
     _This file contains the code that tests the convergence of the order of perturbation._
   * [Distrubutions](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/Distributions.m)
+    
     _This file contains the code that calculates the probability densities and the spin polarization._
   * [Hamiltonian](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/Hamiltonian.m)
+    
     _This file contains the code that creates the unperturbed Hamiltonian given specified parameters._
   * [Perturbation](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/Perturbation.m)
+    
     _This file contains the code that creates the potential matrix for different perturbations._
   * [Wavefunction](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/Wavefunction.m)
+    
     _This file contains the code that calculates the Dyson Series expansion up to order n for a given initial condition._
   * [WavefunctionWithErrors](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Numerical%20Approximation/WavefunctionWithErrors.m)
+    
     _This file contains the code that calculates the total error from integration in "Wavefunction"._
 
 ## Plotting 
 This folder contains the code used for plotting the results:
   * [ColorPlot](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/ColorPlot.m)
+    
     _This file contains the code that creates the color plots for the probability densities and the spin polarization._
-  * [PolarizedPlotting](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/PolarizedPlotting.m)
+  * [PolarizedPlotting](https://github.com/antononils/Dynamics-of-the-CISS-Effect-under-Non-Equilibrium/blob/main/Plotting/PolarizedPlotting.m
+  
     _This file contains the code that creates the color plots for the polarized probability density._
 
 
