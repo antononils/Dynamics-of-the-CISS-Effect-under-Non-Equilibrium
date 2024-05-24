@@ -1,5 +1,9 @@
 function CISSAnimation(t, sites, spinUpData, spinDownData, title)
     % Function for animating probability densities over time
+
+    % Create ranges for the axes in the animation
+    SiteRange = [sites(1) sites(end)];
+    DataRange = [min(min(spinUpData)), max(max(spinUpData))];
     
     % Create a figure
     figure
@@ -9,10 +13,13 @@ function CISSAnimation(t, sites, spinUpData, spinDownData, title)
         % Plot the data for current time
         plot(sites, spinDownData(k,:), sites, spinUpData(k, :),'-')
         
-        % Create labels for data and axis
+        % Create labels for data and axes
         legend("Spin down", "Spin up")
         xlabel("Site Index")
         ylabel("Probability Density")
+        
+        % Set the ranges for the axes
+        axis([SiteRange DataRange])
 
         % Save frame for current time
         F(k) = getframe(gcf);
