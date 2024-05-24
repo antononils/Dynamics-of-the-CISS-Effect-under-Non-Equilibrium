@@ -103,7 +103,6 @@ end
 
 writerObj = VideoWriter("PD_Lambda_100.avi");
 writerObj.FrameRate = 60;
-writerObj.Quality = 100;
 open(writerObj);
 
 for i=1:length(F)
