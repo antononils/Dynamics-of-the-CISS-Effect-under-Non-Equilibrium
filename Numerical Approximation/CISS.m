@@ -24,17 +24,9 @@ fun3 = @(t) sin(2*pi/20*t);
 fun4 = @(t) -exp(-0.5*t);
 fun5 = @(t) -2*(heaviside(t-10)-0.5);
 
-perturbations1 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]}};
-V1 = Perturbation(perturbations1, 2*N*M);
+perturbations = {{'Metal', Gamma_01, fun2, 20, [0 0 0]}};
+V = Perturbation(perturbations, 2*N*M);
 
-perturbations2 = {{'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V2 = Perturbation(perturbations2, 2*N*M);
-
-perturbations3 = {{'Metal', Gamma_01, fun2, 20, [0 0 0]},...
-                 {'Metal', Gamma_02, fun1, 1, [0 0 -1]}};
-V3 = Perturbation(perturbations3, 2*N*M);
-
-Perturbation({{'E-field', 1, fun1}}, 2*N*M)
 
 %% Create time vector
 t_0 = 0; T = 250; dt = 0.2;
@@ -47,27 +39,10 @@ start_guess = ones(2*N*M,1);
 
 
 %% Determine wavefunctions and relevant outputs
-wavefunctions1 = Wavefunction(0,t,H_01,V1,start_guess);
-wavefunctions2 = Wavefunction(0,t,H_02,V1,start_guess);
+wavefunctions1 = Wavefunction(0,t,H_01,V,start_guess);
+wavefunctions2 = Wavefunction(0,t,H_02,V,start_guess);
 [n1, m1] = Distributions(wavefunctions1, t);
 [n2, m2] = Distributions(wavefunctions2, t);
-
-% wavefunctions3 = Wavefunction(50,t,H_01,V2,start_guess);
-% wavefunctions4 = Wavefunction(50,t,H_02,V2,start_guess);
-% [n3, m3] = Distributions(wavefunctions3, t);
-% [n4, m4] = Distributions(wavefunctions4, t);
-% 
-% wavefunctions5 = Wavefunction(50,t,H_01,V3,start_guess);
-% wavefunctions6 = Wavefunction(50,t,H_02,V3,start_guess);
-% [n5, m5] = Distributions(wavefunctions5, t);
-% [n6, m6] = Distributions(wavefunctions6, t);
-
-% ColorPlot(sites, t, m1{3}+m3{3}, m2{3}+m4{3}, '\textbf{Spin Polarization (Superposition)}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
-% ColorPlot(sites, t, m5{3}, m6{3}, '\textbf{Spin Polarization}', 'Helicity', 'Site Index', 'Time', 'Polarized', 'linear')
-
-
-
-
 
 
 %% Plot semi-3D colorplots
@@ -77,118 +52,3 @@ wavefunctions2 = Wavefunction(0,t,H_02,V1,start_guess);
 
 %% Test for convergence
 %ConvergenceTest(1000,t,H_0,V,start_guess)
-
-
-
-
-Time = t;
-Data = n1{1};
-SiteRange = [1 M*N];
-DataRange = [min(min(Data)), max(max(Data))];
-
-figure
-for k = 1:numel(Time)-1
-    plot(sites, n1{2}(k,:), sites, Data(k, :),'-')
-    legend("Spin down", "Spin up")
-    xlabel("Site Index")
-    ylabel("Probability Density")
-    %plot(sites, n1{2}(k,:), '-r')
-    %title(k*dt)
-    axis([SiteRange DataRange])
-    F(k) = getframe(gcf);
-    pause(0.0001)
-end
-
-
-
-writerObj = VideoWriter("PD_Lambda_100.avi");
-writerObj.FrameRate = 60;
-open(writerObj);
-
-for i=1:length(F)
-    % convert the image to a frame
-    frame = F(i) ;    
-    writeVideo(writerObj, frame);
-end
-close(writerObj)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Plot 2D graphs with time development for specific sites for choosen output
-% for i = [4,3,2,1]
-%     y1 = charge_distribution{1}(:,i);
-%     y2 = charge_distribution{2}(:,i);
-%     figure(i)
-%     plot(t,y1,t,y2)
-%     legend('Spin up','Spin down')
-% end
-
-
-
-
-
-%% Examine the integration errors and plot as function of time step
-% time_steps = 0.01:0.005:1;
-% normsOfErrors = zeros(length(time_steps),1);
-% for i = 1:length(time_steps)
-%     i
-%     t = t_0:time_steps(i):T;
-%     [wavefunctions,error] = WavefunctionWithErrorsMIT(1,t,H_0,V,start_guess);
-%     for k = 1:length(t)
-%         normsOfErrors(i) = normsOfErrors(i)+norm(error{k});
-%     end
-%     normsOfErrors(i) = normsOfErrors(i)/length(t);
-% end
-% plot(time_steps,normsOfErrors)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% f = fun(t);
-% ft = fft(f);
-% fs = 1/dt;
-% f = (0:length(ft)-1)*fs/length(ft);
-% plot(f,abs(ft))
-
-function d1 = diff1(y, h)
-    n = length(y);
-    d1(1) = (-3*y(1)+4*y(2)-y(3))/(2*h);
-    d1(2:n-1) = (y(3:n)-y(1:n-2))/(2*h);
-    d1(n) = (3*y(n)-4*y(n-1)+y(n-2))/(2*h);
-end
